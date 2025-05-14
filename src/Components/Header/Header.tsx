@@ -1,9 +1,6 @@
 import { FC, useState } from "react";
+import { TProps } from "../../TypeScript/TypeScript";
 
-type TProps = {
-  addTodo: (value: string) => void;
-};
-]
 export const Header: FC<TProps> = ({ addTodo }) => {
   const [value, setValue] = useState("");
 

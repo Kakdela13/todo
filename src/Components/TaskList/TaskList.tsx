@@ -1,21 +1,9 @@
 import { Task } from "../Task/Task";
 import { formatDistanceToNowStrict } from "date-fns";
+import { TTodo, TList } from "../../TypeScript/TypeScript";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
 
-type TTodo = {
-  id: Date;
-  title: string;
-  edit: boolean;
-  completed: boolean;
-  createdAt: Date;
-};
-
-type TList = {
-  todoData: TTodo[];
-  deleteTodo: (id: Date) => void;
-  onCheckboxClick: (id: Date) => void;
-  setEditMode: (id: Date) => void;
-  updateTitle: (id: Date, newTitle: string) => void;
-};
 export const TaskList = ({
   todoData,
   deleteTodo,

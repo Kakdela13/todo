@@ -1,21 +1,6 @@
 import { formatDistanceToNowStrict } from "date-fns";
 import React, { useState, useEffect } from "react";
-
-type TTodo = {
-  id: Date;
-  title: string;
-  edit: boolean;
-  completed: boolean;
-  createdAt: Date;
-};
-
-type TTask = {
-  taskData: TTodo;
-  deleteTodo: (id: Date) => void;
-  onCheckboxClick: (id: Date) => void;
-  setEditMode: (id: Date) => void;
-  updateTitle: (id: Date, newTitle: string) => void;
-};
+import { TTodo, TTask } from "../../TypeScript/TypeScript";
 
 export const Task = ({
   taskData,
@@ -24,24 +9,6 @@ export const Task = ({
   setEditMode,
   updateTitle,
 }: TTask) => {
-  const [timeAgo, setTimeAgo] = useState(
-    formatDistanceToNowStrict(new Date(taskData.createdAt), {
-      addSuffix: true,
-    }),
-  );
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeAgo(
-        formatDistanceToNowStrict(new Date(taskData.createdAt), {
-          addSuffix: true,
-        }),
-      );
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [taskData.createdAt]);
-
   const [newTitle, setNewTitle] = useState(taskData.title);
 
   const editTask = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +42,7 @@ export const Task = ({
           >
             {taskData.title}
           </span>
-          <span className="created"> created {timeAgo}</span>
+          <span className="created"> created {}</span>
         </label>
         <button
           className="icon icon-edit"
